@@ -1,0 +1,46 @@
+//var Xspeed: float = 5.0;
+var Zspeed: float = 5.0;
+var RandomSpeed: boolean = false;
+var RotationDegree: float = 0.0;
+var RandomDirection: boolean = false;
+var SpawnTime: float = 2;
+var cloud: Transform;
+
+function Start () {
+
+CloudSpawn();
+
+
+if (RandomDirection == true)
+	{
+		transform.Rotate(new Vector3(0,Random.Range(-45,45),0));
+	}
+
+}
+
+function Update () {
+
+if (RandomSpeed == false)
+	{
+transform.Translate(Vector3(0,0,Zspeed) * Time.deltaTime);
+	}
+
+if (RandomSpeed == true)
+	{
+	
+transform.Translate(Vector3(0,0,Random.Range(0.5,10))* Time.deltaTime);
+	}
+
+}
+
+
+function CloudSpawn()
+	{
+	
+	yield WaitForSeconds (SpawnTime);
+	Instantiate(cloud, transform.position, transform.rotation);
+	var position = Vector3( Random.Range(500,1500),Random.Range(100,100),Random.Range(-20,-50));
+	renderer.enabled = true;
+	transform.position = position;
+
+	}
